@@ -7,11 +7,11 @@ given limit.
 
 To find all the prime numbers less than or equal to a given integer n by Eratosthenes' method: <br>
 
-• Create a list of consecutive integers from 2 through n: (2, 3, 4, ..., n).  <br>
-• Initially, let p equal 2, the first prime number.  <br>
-• Starting from p, enumerate its multiples by counting to n in increments of p, and mark them
++ Create a list of consecutive integers from 2 through n: (2, 3, 4, ..., n).  <br>
++ Initially, let p equal 2, the first prime number.  <br>
++ Starting from p, enumerate its multiples by counting to n in increments of p, and mark them
 in the list (these will be 2p, 3p, 4p, etc.; the p itself should not be marked).<br>
-• Find the first number greater than p in the list that is not marked. If there was no such
++ Find the first number greater than p in the list that is not marked. If there was no such
 number, stop. Otherwise, let p now equal this new number (which is the next prime), and
 repeat from step 3.  <br>
 
@@ -57,29 +57,29 @@ long intfor the number of tosses and hits in the circle, get a reasonable estima
 problem of not being thread-safe. This problem can be overcome, and I am sure you can figure out how.
   
 Things you should be able to answer:  <br>
-• How many darts are needed to reach a reasonable estimate?  <br>
-• Is there any measurable difference between using a critical statement and using a reduction  
++ How many darts are needed to reach a reasonable estimate?  <br>
++ Is there any measurable difference between using a critical statement and using a reduction  
 clause?  <br>
-• Time your code using both static and dynamic schedule to determine if there is any
++ Time your code using both static and dynamic schedule to determine if there is any
 difference in performance?  <br>
 
 Assignment Submission:  <br>
 Your homework is due at the beginning of class. Tar or zip all documentation and source files together.
 The header of each source file should contain all the normal information (name, class assignment etc.)<br>
-• Documentation - all of the following should be in: prog1.pdf  <br>
-• Description of the programs.  <br>
-• Description of the algorithms and libraries used.  <br>
-• Description of functions and program structure.  <br>
-• How to compile and use the program.  <br>
-• Description of the testing and verification process.  <br>
-• Description of what you have submitted: Makefile, external functions, main, etc.  <br>
-• Format: PDF (write in any word processor and export as PDF if the option is available,  <br>
++ Documentation - all of the following should be in: prog1.pdf  <br>
++ Description of the programs.  <br>
++ Description of the algorithms and libraries used.  <br>
++ Description of functions and program structure.  <br>
++ How to compile and use the program.  <br>
++ Description of the testing and verification process.  <br>
++ Description of what you have submitted: Makefile, external functions, main, etc.  <br>
++ Format: PDF (write in any word processor and export as PDF if the option is available,  <br>
 or convert to PDF)
-• Main programs  <br>
-• Any required external functions *.c.  <br>
-• Any include files you use (other than the standard ones).  <br>
-• The Makefile to build the programs  <br>
-• Tar the directory and then gzip using the correct filename.  <br>
++ Main programs  <br>
++ Any required external functions *.c.  <br>
++ Any include files you use (other than the standard ones).  <br>
++ The Makefile to build the programs  <br>
++ Tar the directory and then gzip using the correct filename.  <br>
 [And I do know that there are better compression routines than gzip.]  <br>
 
 
