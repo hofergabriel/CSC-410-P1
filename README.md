@@ -1,8 +1,8 @@
 # CSC-410-P1
-Primes and Monte Carlo method in parallel
 
 1. The sieve of Eratosthenes is a simple, ancient algorithm for finding all prime numbers up to any
-given limit.
+given limit. 
+
 To find all the prime numbers less than or equal to a given integer n by Eratosthenes' method: <br>
 
 • Create a list of consecutive integers from 2 through n: (2, 3, 4, ..., n).  <br>
@@ -52,7 +52,7 @@ long intfor the number of tosses and hits in the circle, get a reasonable estima
 6 decimal places) of π. Also notice that rand is not particular random, but random has its own
 problem of not being thread-safe. This problem can be overcome, and I am sure you can figure out how.
   
-Things you should be able to answer:  <br>
+\* Things you should be able to answer:  <br>
 • How many darts are needed to reach a reasonable estimate?  <br>
 • Is there any measurable difference between using a critical statement and using a reduction  
 clause?  <br>
