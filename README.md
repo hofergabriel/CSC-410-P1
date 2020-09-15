@@ -1,5 +1,3 @@
-# CSC-410-P1
-
 # CSC-410/510 Programming Assignment 1 - Due 18 September
 
 ### 1. Sieve of Eratosthenes
