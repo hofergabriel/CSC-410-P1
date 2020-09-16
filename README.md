@@ -25,15 +25,15 @@ less than n together with the runtime.
 
 Example of output:  <br>
 
-     ./prime 1000000  <br>
-      <br>
-     0: 2 3 5 7 11 13 17 19 23 29  <br>
-     10: 31 37 41 43 47 53 59 61 67 71  <br>
-     . . .  <br>
-     . . .  <br>
-     78480: 999721 999727 999749 999763 999769 999773 999809 999853 999863 999883  <br>
-     78490: 999907 999917 999931 999953 999959 999961 999979 999983  <br>
-     Elapsed time = 8.042866e+00 ms  <br>
+     $ ./prime 1000000  
+
+     0: 2 3 5 7 11 13 17 19 23 29  
+     10: 31 37 41 43 47 53 59 61 67 71  
+     . . .  
+     . . .  
+     78480: 999721 999727 999749 999763 999769 999773 999809 999853 999863 999883  
+     78490: 999907 999917 999931 999953 999959 999961 999979 999983  
+     Elapsed time = 8.042866e+00 ms  
 
 Yes I know, I made 2 the 0th prime, but I am a computer scientist. There are several web-pages
 out there that provide lists of primes. Either as all the primes below a given number, or 1000, 10000,
@@ -82,7 +82,8 @@ or convert to PDF)
 + Tar the directory and then gzip using the correct filename.  <br>
 [And I do know that there are better compression routines than gzip.]  <br>
 
-## Resources
+
+# Resources
 
 ### Sieve of Eratosthenes
 
