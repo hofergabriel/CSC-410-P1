@@ -1,6 +1,6 @@
 # CSC-410/510 Programming Assignment 1 - Due 18 September
 
-### 1. Sieve of Eratosthenes
+## 1) Sieve of Eratosthenes
 
 The sieve of Eratosthenes is a simple, ancient algorithm for finding all prime numbers up to any
 given limit. 
@@ -39,7 +39,7 @@ Yes I know, I made 2 the 0th prime, but I am a computer scientist. There are sev
 out there that provide lists of primes. Either as all the primes below a given number, or 1000, 10000,
 100000 etc. first primes. So you should have no problem finding a way to check your list.   <br>
 
-### 2. Monte Carlo Method 
+## 2) Monte Carlo Method 
 
 Suppose we toss darts randomly at a square dartboard whose sides are 1 ft in length. Suppose also
 that there is a quarter circle segment with radius 1 ft inscribed in the square dartboard, from the top
