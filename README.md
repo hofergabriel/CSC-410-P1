@@ -97,9 +97,9 @@ or convert to PDF)
 
 + [Oak Ridge National Laboratory](https://www.olcf.ornl.gov/tutorials/monte-carlo-pi/)
 
+### OpenMP 
 
-
-
++ [Guide](https://bisqwit.iki.fi/story/howto/openmp/)
 
 
 
