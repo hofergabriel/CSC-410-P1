@@ -1,35 +1,35 @@
-#include <bits/stdc++.h>
-using namespace std;
+#include<stdio.h>
+
 
 int n, pcnt;
-bool sieve[1<<9];
+char sieve[1<<9];
 int primes[1<<9];
 
-void erat(int n, int & pcnt){
+void erat(int n, int * pcnt){
   for(int i=2;i<=n;i++)
-    sieve[i]=true;
+    sieve[i]=1;
   for(int i=2;i*i<=n;i++)
     if(sieve[i])
       for(int j=i*i;j<=n;j+=i)
         sieve[j]=0;
-  pcnt=0;
+  *pcnt=0;
   for(int i=2;i<=n;i++)
     if(sieve[i]){
-      primes[pcnt]=i; 
-      pcnt++;
+      primes[*pcnt]=i; 
+      (*pcnt)++;
     }
 }
 
 void print(int len){
   for(int i=0;i<len;i++)
-    cout<<primes[i]<<' ';
-  cout<<endl;
+    printf("%i ",primes[i]);
+  printf("\n\n");
 }
 
 int main(){
-  cin >> n;
+  scanf("%i",&n);
   pcnt=0;
-  erat(n,pcnt);
+  erat(n,& pcnt);
   print(pcnt);
 }
 
