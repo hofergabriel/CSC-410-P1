@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <math.h> 
 #include <time.h> 
+#include <omp.h>
 
 
 int n, pcnt;
@@ -39,22 +40,59 @@ void print(int len){
 }
 
 /************************************************
+builds the sieve, Parallelized
+*************************************************/
+void erat2(int n, int * pcnt){
+  #pragma omp parallel for
+  for(int i=2;i<=n;i++)
+    sieve[i]=1;
+  int sqrtn = sqrt((double)n);
+  #pragma omp parallel for
+  for(int i=2;i <= sqrtn;i++)
+    if(sieve[i]){
+      #pragma omp parallel for
+      for(int j=i*i;j<=n;j+=i)
+        sieve[j]=0;
+    }
+  *pcnt=0;
+  #pragma omp parallel for
+  for(int i=2;i<=n;i++)
+    if(sieve[i]){
+      primes[*pcnt]=i; 
+      ++(*pcnt);
+    }
+}
+
+/************************************************
 entry point for program
 /************************************************/
 int main(){
-  // read n
   scanf("%i",&n);
-  // prime count 
+  double start, end;
+
   pcnt=0;
-
-  clock_t t = clock();
-  // call prime seive
+  //clock_t t1 = clock();
+  start = omp_get_wtime();
   erat(n,& pcnt);
-  // print the results
-  t=clock()-t;
+  end = omp_get_wtime();
+  //t1=clock()-t1;
+  printf("Elapsed time = %f seconds\n\n", end-start);
+  //print(pcnt);
+  //printf("Elapsed time = %f seconds\n\n", ((float)t1) / CLOCKS_PER_SEC);
 
-  print(pcnt);
-  printf("Elapsed time = %f seconds\n\n", ((float)t) / CLOCKS_PER_SEC);
+
+
+
+  pcnt=0;
+  // clock_t t2 = clock();
+  start = omp_get_wtime();
+  erat2(n,& pcnt);
+  end = omp_get_wtime();
+  // t2=clock()-t2;
+  printf("Elapsed time = %f seconds\n\n", end-start);
+  //print(pcnt);
+  //printf("Elapsed time = %f seconds\n\n", ((float)t1) / CLOCKS_PER_SEC);
+
 }
 
 

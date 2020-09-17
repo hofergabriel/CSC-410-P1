@@ -104,13 +104,15 @@ or convert to PDF)
 ### Measuring Runtime in C
 
 + [](https://www.geeksforgeeks.org/how-to-measure-time-taken-by-a-program-in-c/)
-+ [](https://www.geeksforgeeks.org/time-h-header-file-in-c-with-examples/)
++ [I used this example](https://www.geeksforgeeks.org/time-h-header-file-in-c-with-examples/)
++ [what to install on ubuntu](https://medium.com/swlh/openmp-on-ubuntu-1145355eeb2)
++ [a question](https://askubuntu.com/questions/144352/how-can-i-install-openmp-in-ubuntu)
+
+### using omp\_get\_time() function 
 
 
 
-
-
-
+### How to set the number of Threads
 
 
 
