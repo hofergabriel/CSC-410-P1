@@ -101,6 +101,15 @@ or convert to PDF)
 
 + [Guide](https://bisqwit.iki.fi/story/howto/openmp/)
 
+### Measuring Runtime in C
+
++ [](https://www.geeksforgeeks.org/how-to-measure-time-taken-by-a-program-in-c/)
++ [](https://www.geeksforgeeks.org/time-h-header-file-in-c-with-examples/)
+
+
+
+
+
 
 
 
