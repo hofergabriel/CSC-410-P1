@@ -121,7 +121,7 @@ or convert to PDF)
 
 $ gcc prime.c -fopenmp -lm
 
-### Loops must be in cannonical form:
+### Loops must be in cannonical form re: "invalid controlling prediate" error from gcc
 
 [_](https://www.openmp.org//wp-content/uploads/OpenMP4.0.0.pdf#G4.1507160)
 
