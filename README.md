@@ -116,14 +116,37 @@ or convert to PDF)
 
 ### How to set the number of Threads
 
-
 ### My Compilation
 
 $ gcc prime.c -fopenmp -lm
 
 ### Loops must be in cannonical form re: "invalid controlling prediate" error from gcc
 
-[_](https://www.openmp.org//wp-content/uploads/OpenMP4.0.0.pdf#G4.1507160)
+[cannonical form of loops in openmp](https://www.openmp.org//wp-content/uploads/OpenMP4.0.0.pdf#G4.1507160)
+
+### Fork-Join Pattern 
+
+[fork-join pattern slides](https://ipcc.cs.uoregon.edu/lectures/lecture-9-fork-join.pdf)
+
+### Online Implementations of Monte Carlo
+
+[Rosetta Code Monte Carlo in C](https://rosettacode.org/wiki/Monte_Carlo_methods#C)
+[another](https://www.dartmouth.edu/~rc/classes/soft_dev/C_simple_ex.html#:~:text=Monte%20Carlo%20techniques%3A%20use%20of,solve%20mathematical%20or%20physical%20problems.&text=Run%20the%20program%20using%20an,with%20the%20number%20interations%20(ex.)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

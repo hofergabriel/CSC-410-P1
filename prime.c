@@ -62,7 +62,7 @@ void erat2(int n, int * pcnt){
 /************************************************
 entry point for program
 /************************************************/
-int main(){
+void main(){
   scanf("%i",&n);
   double start, end;
 
