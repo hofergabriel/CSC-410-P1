@@ -1,0 +1,154 @@
+ 
+\documentclass[12pt]{article}
+\usepackage{listings}
+\begin{document}
+\begin{titlepage}
+   \begin{center}
+       \vspace*{1cm}
+       \large
+       \textbf{Programming Assignment 1}
+       \normalsize
+
+       \vspace{0.5cm}
+
+       \textbf{Author: Gabriel Hofer}
+
+       \vspace{0.5cm}
+
+       CSC-410 Parallel Computing 
+
+       \vspace{0.5cm}
+
+       Instructor: Dr. Karlsson
+
+       \vspace{0.5cm}
+
+       Due: September 18, 2020
+
+       \vfill
+
+       Computer Science and Engineering\\
+       South Dakota School of Mines and Technology\\
+   \end{center}
+\end{titlepage}
+%------------------------------------------------------------------------------------
+
+
+\newpage
+\section*{Sieve of Eratosthenes}
+\begin{lstlisting}[frame=single,language=C,caption=Non-parallelized Sieve of Eratosthenes (prime.c) \label{code:prime-sieve-nonparallelized}]
+void erat(int n, int * pcnt){
+  for(int i=2;i<=n;i++)
+    sieve[i]=1;
+  for(int i=2;i*i<=n;i++)
+    if(sieve[i])
+      for(int j=i*i;j<=n;j+=i)
+        sieve[j]=0;
+  *pcnt=0;
+  for(int i=2;i<=n;i++)
+    if(sieve[i])
+      primes[(*pcnt)++]=i; 
+}
+\end{lstlisting}
+\begin{lstlisting}[frame=single,language=C,caption=Parllelized Sieve of Eratosthenes (prime.c) \label{code:prime-sieve-parallelized}]
+void erat2(int n, int * pcnt){
+  #pragma omp parallel for
+  for(int i=2;i<=n;i++)
+    sieve[i]=1;
+  int sqrtn = sqrt((double)n);
+  for(int i=2;i <= sqrtn;i++)
+    if(sieve[i]){
+      #pragma omp parallel for
+      for(int j=i*i;j<=n;j+=i)
+        sieve[j]=0;
+    }
+  *pcnt=0;
+  for(int i=2;i<=n;i++)
+    if(sieve[i])
+      primes[(*pcnt)++]=i; 
+}
+\end{lstlisting}
+\newpage
+\begin{lstlisting}[frame=single,language=C,caption=Measuring Runtime Performance (prime.c) \label{code:prime-sieve-runtime}]
+  scanf("%i",&n);
+  double start, end;
+
+  pcnt=0;
+  start = omp_get_wtime();
+  erat(n,& pcnt);
+  end = omp_get_wtime();
+  print(pcnt);
+  printf("Elapsed time = %f seconds\n\n", end-start);
+
+  // reset primes and sieve.
+  for(int i=0; i<(1<<30); i++){
+    sieve[i]=0;
+    primes[i]=0;
+  }
+
+  pcnt=0;
+  start = omp_get_wtime();
+  erat2(n,& pcnt);
+  end = omp_get_wtime();
+  print(pcnt);
+  printf("Elapsed time = %f seconds\n\n", end-start);
+\end{lstlisting}
+\begin{lstlisting}[frame=single,language=Bash,caption=Output in Terminal from prime sieve program (prime.c) \label{code:prime-sieve-terminal-output}]
+
+\end{lstlisting}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section*{Monte Carlo Method}
+\begin{lstlisting}[frame=single,language=Python,caption=Non-parallelized Monte Carlo Method (monte.c) \label{code:monte-carlo-nonparallelized}]
+double monte(long long n){
+  long long hits=0; 
+  double x, y, pi;
+  for(int i=0; i<n; i++)
+    hits += sq((double)rand()/((double)RAND_MAX)) + 
+      sq((double)rand()/((double)RAND_MAX)) 
+      <= 1.0 ? 1 : 0;
+  pi = 4.0*hits/(double)n;
+  return pi;
+}
+\end{lstlisting}
+\begin{lstlisting}[frame=single,language=Python,caption=Parallelized Monte Carlo Method (monte.c) \label{code:monte-carlo-parallelized}]
+double monte2(long long n){
+  long long hits=0; 
+  double x, y, pi;
+  #pragma omp parallel for
+  for(int i=0; i<n; i++)
+    hits += sq((double)rand()/((double)RAND_MAX)) + 
+      sq((double)rand()/((double)RAND_MAX)) 
+      <= 1.0 ? 1 : 0;
+  pi = 4.0*hits/(double)n;
+  return pi;
+}
+\end{lstlisting}
+\newpage
+\begin{lstlisting}[frame=single,language=Bash,caption=Measuring Runtime Performance (monte.c) \label{code:monte-carlo-runtime}]
+  long long n;
+  double start, end, _PI_;
+  scanf("%lld", & n);
+
+  printf("Monte Carlo Method NON-parallelized\n");
+  start = omp_get_wtime();
+  _PI_=monte(n);
+  end = omp_get_wtime();
+
+  printf("PI: %f\n",_PI_);
+  printf("Elapsed time = %f seconds\n\n", end-start);
+
+  printf("Monte Carlo Method parallelized\n");
+  start = omp_get_wtime();
+  _PI_=monte2(n);
+  end = omp_get_wtime();
+
+  printf("PI: %f\n",_PI_);
+  printf("Elapsed time = %f seconds\n\n", end-start);
+\end{lstlisting}
+\begin{lstlisting}[frame=single,language=Bash,caption=Output in Terminal (monte.c) \label{code:monte-carlo-terminal-output}]
+\end{lstlisting}
+
+\end{document}
+

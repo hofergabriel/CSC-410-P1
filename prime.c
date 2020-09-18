@@ -3,7 +3,6 @@
 #include <time.h> 
 #include <omp.h>
 
-
 int n, pcnt;
 char sieve[1<<30];
 int primes[1<<30];
@@ -70,7 +69,6 @@ void main(){
   end = omp_get_wtime();
   print(pcnt);
   printf("Elapsed time = %f seconds\n\n", end-start);
-
 
   // reset primes and sieve.
   for(int i=0; i<(1<<30); i++){
