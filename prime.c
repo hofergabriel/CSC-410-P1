@@ -71,6 +71,11 @@ void main(){
   scanf("%li",&n);
   n--;
 
+  // reset primes and sieve.
+  for(int i=0; i<(1<<30); i++){
+    sieve[i]=0;
+    primes[i]=0;
+  }
   pcnt=0;
   start = omp_get_wtime();
   erat(n,& pcnt);
@@ -83,14 +88,12 @@ void main(){
     sieve[i]=0;
     primes[i]=0;
   }
-
   pcnt=0;
   start = omp_get_wtime();
   erat2(n,& pcnt);
   end = omp_get_wtime();
   print(pcnt);
   printf("Elapsed time = %.6f seconds\n\n", end-start);
-
 }
 
 
