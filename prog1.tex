@@ -1,17 +1,18 @@
- 
 \documentclass[12pt]{article}
 \usepackage{listings}
+\usepackage{pdfpages}
+%\usepackage[legalpaper, margin=1in]{geometry}
 \begin{document}
 \begin{titlepage}
    \begin{center}
        \vspace*{1cm}
-       \large
-       \textbf{Programming Assignment 1}
+       \Large
+       Programming Assignment 1
        \normalsize
 
        \vspace{0.5cm}
 
-       \textbf{Author: Gabriel Hofer}
+       Author: Gabriel Hofer
 
        \vspace{0.5cm}
 
@@ -37,7 +38,7 @@
 \newpage
 \section*{Sieve of Eratosthenes}
 \begin{lstlisting}[frame=single,language=C,caption=Non-parallelized Sieve of Eratosthenes (prime.c) \label{code:prime-sieve-nonparallelized}]
-void erat(int n, int * pcnt){
+void erat(long int n, long int * pcnt){
   for(int i=2;i<=n;i++)
     sieve[i]=1;
   for(int i=2;i*i<=n;i++)
@@ -51,7 +52,7 @@ void erat(int n, int * pcnt){
 }
 \end{lstlisting}
 \begin{lstlisting}[frame=single,language=C,caption=Parllelized Sieve of Eratosthenes (prime.c) \label{code:prime-sieve-parallelized}]
-void erat2(int n, int * pcnt){
+void erat2(long int n, long int * pcnt){
   #pragma omp parallel for
   for(int i=2;i<=n;i++)
     sieve[i]=1;
@@ -70,15 +71,18 @@ void erat2(int n, int * pcnt){
 \end{lstlisting}
 \newpage
 \begin{lstlisting}[frame=single,language=C,caption=Measuring Runtime Performance (prime.c) \label{code:prime-sieve-runtime}]
-  scanf("%i",&n);
+void main(){
+  long int n, pcnt;
   double start, end;
+  scanf("%li",&n);
+  n--;
 
   pcnt=0;
   start = omp_get_wtime();
   erat(n,& pcnt);
   end = omp_get_wtime();
   print(pcnt);
-  printf("Elapsed time = %f seconds\n\n", end-start);
+  printf("Elapsed time = %.6f seconds\n\n", end-start);
 
   // reset primes and sieve.
   for(int i=0; i<(1<<30); i++){
@@ -91,12 +95,12 @@ void erat2(int n, int * pcnt){
   erat2(n,& pcnt);
   end = omp_get_wtime();
   print(pcnt);
-  printf("Elapsed time = %f seconds\n\n", end-start);
+  printf("Elapsed time = %.6f seconds\n\n", end-start);
+}
 \end{lstlisting}
 \begin{lstlisting}[frame=single,language=Bash,caption=Output in Terminal from prime sieve program (prime.c) \label{code:prime-sieve-terminal-output}]
-
+\$ gcc prime.c -lm -fopenmp
 \end{lstlisting}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 \section*{Monte Carlo Method}
@@ -127,6 +131,7 @@ double monte2(long long n){
 \end{lstlisting}
 \newpage
 \begin{lstlisting}[frame=single,language=Bash,caption=Measuring Runtime Performance (monte.c) \label{code:monte-carlo-runtime}]
+void main(){
   long long n;
   double start, end, _PI_;
   scanf("%lld", & n);
@@ -146,9 +151,52 @@ double monte2(long long n){
 
   printf("PI: %f\n",_PI_);
   printf("Elapsed time = %f seconds\n\n", end-start);
+}
 \end{lstlisting}
 \begin{lstlisting}[frame=single,language=Bash,caption=Output in Terminal (monte.c) \label{code:monte-carlo-terminal-output}]
+\$ gcc monte.c -lm -fopenmp
 \end{lstlisting}
 
+\newpage
+\subsection*{Description of Programs}
+Functions erat and erat2 compute all of the primes between 1 and n. 
+Functions monte and monte2 compute an approximation of PI.
+erat and monte are non-parallelized while erat2 and monte2 are parallelized.
+
+\subsection*{Description of Algorithms and Libraries: } 
+I used OpenMP for both programs.  
+
+The prime sieve program is essentially two nested for loops. Initially, we start with an 
+array, called sieve, containing a True value in every cell. Then, we iterate i from 2 to
+sqrt(n). For each of these iterations, we also iterate j from i*i to n in steps of i. At
+each step, we set the current cell in sieve to False, because we know the number isn't prime.
+
+The Monte Carlo Algorithm is a single for loop. Each iteration of the for loop is analogous 
+to throwing a dart at a dart board. In our code, we use a circle of radius 1 as our dart board.
+We call the C rand() function twice for the x and y dimensions. Pythagora's Theorem is used
+to calculate whether the dart is more than 1.0 from the center of the board. If not, we
+increment our count variable, hits. Otherwise, we continue to the next iteration of the loop
+and throw another dart.
+
+\subsection*{Description of Functions and Program Structure: } 
+I created two files called prime.c and monte.c. 
+The prime sieve is written in prime.c and, the Monte Carlo method is written in monte.c.  
+
+\subsection*{How to compile and use the programs}
+On Linux (Ubuntu): \\
+\$ gcc filename.c -fopenmp -lm 
+
+\subsection*{Description of the Testing and Verification Process: }
+I viewed the output of both prime.c and monte.c to check the 
+correctness and verified that the algorithms for both programs are correct.  
+For testing the runtime of the programs and algorithms, I used the function omp\_get\_wtime() .
+
+\subsection*{Description of Deliverable: }
+I submitted a zip folder with the following: 
+\begin{enumerate}
+  \item this pdf document
+  \item prime.c
+  \item monte.c
+\end{enumerate}
 \end{document}
 

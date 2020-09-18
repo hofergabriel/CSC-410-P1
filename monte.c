@@ -1,3 +1,10 @@
+/**********************************************************
+Author: Gabriel Hofer
+Course: CSC-410
+Date: September 18, 2020
+Instructor: Christer Karlsson
+Program 1
+***********************************************************/
 #include <stdio.h>
 #include <math.h> 
 #include <time.h> 
@@ -31,11 +38,12 @@ Parallelized Monte Carlo algorithm
 double monte2(long long n){
   long long hits=0; 
   double x, y, pi;
-  #pragma omp parallel for
-  for(int i=0; i<n; i++)
+  #pragma omp for
+  for(int i=0; i<n; i++){
     hits += sq((double)rand()/((double)RAND_MAX)) + 
       sq((double)rand()/((double)RAND_MAX)) 
       <= 1.0 ? 1 : 0;
+  }
   pi = 4.0*hits/(double)n;
   return pi;
 }
@@ -64,6 +72,4 @@ void main(){
   printf("PI: %f\n",_PI_);
   printf("Elapsed time = %f seconds\n\n", end-start);
 }
-
-
 
