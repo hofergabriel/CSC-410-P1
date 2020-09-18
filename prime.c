@@ -45,7 +45,6 @@ void erat2(int n, int * pcnt){
   for(int i=2;i<=n;i++)
     sieve[i]=1;
   int sqrtn = sqrt((double)n);
-  #pragma omp parallel for
   for(int i=2;i <= sqrtn;i++)
     if(sieve[i]){
       #pragma omp parallel for
@@ -53,7 +52,6 @@ void erat2(int n, int * pcnt){
         sieve[j]=0;
     }
   *pcnt=0;
-  #pragma omp parallel for
   for(int i=2;i<=n;i++)
     if(sieve[i])
       primes[(*pcnt)++]=i; 
@@ -70,7 +68,7 @@ void main(){
   start = omp_get_wtime();
   erat(n,& pcnt);
   end = omp_get_wtime();
-  //print(pcnt);
+  print(pcnt);
   printf("Elapsed time = %f seconds\n\n", end-start);
 
 
@@ -84,7 +82,7 @@ void main(){
   start = omp_get_wtime();
   erat2(n,& pcnt);
   end = omp_get_wtime();
-  //print(pcnt);
+  print(pcnt);
   printf("Elapsed time = %f seconds\n\n", end-start);
 
 }
